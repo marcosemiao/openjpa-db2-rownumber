@@ -42,22 +42,25 @@ public class RowNumberDB2ProductDerivation extends AbstractProductDerivation {
 	    final JDBCConfigurationImpl jdbcConfig = (JDBCConfigurationImpl) conf;
 	    final PluginValue dbdictionaryPlugin = jdbcConfig.dbdictionaryPlugin;
 
-	    try {
-		Class.forName("com.ibm.ws.persistence.jdbc.sql.DB2Dictionary");
+	    if (classPresent("com.ibm.ws.persistence.jdbc.sql.DB2Dictionary")) {
 		dbdictionaryPlugin.setAlias("db2", RowNumberWSDB2Dictionary.class.getName());
 		return true;
-	    } catch (final ClassNotFoundException e) {
-		// Rien
 	    }
 
-	    try {
-		Class.forName("org.apache.openjpa.jdbc.sql.DB2Dictionary");
+	    if (classPresent("org.apache.openjpa.jdbc.sql.DB2Dictionary")) {
 		dbdictionaryPlugin.setAlias("db2", RowNumberDB2Dictionary.class.getName());
 		return true;
-	    } catch (final ClassNotFoundException e) {
-		// Rien
 	    }
 	}
 	return false;
+    }
+
+    private final static boolean classPresent(final String className) {
+	try {
+	    Class.forName(className);
+	    return true;
+	} catch (final ClassNotFoundException e) {
+	    return false;
+	}
     }
 }
