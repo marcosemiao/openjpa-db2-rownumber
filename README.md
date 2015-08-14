@@ -1,4 +1,4 @@
-# openjpa-ws-db2-rownumber
+# openjpa-db2-rownumber
 
 doc a faire
 SELECT * 

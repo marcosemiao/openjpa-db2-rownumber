@@ -3,17 +3,17 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<parent>
-		<groupId>com.github.marcosemiao.openjpa.ws.db2.rownumber</groupId>
+		<groupId>com.github.marcosemiao.openjpa.db2.rownumber</groupId>
 		<artifactId>parent</artifactId>
 		<version>1.0.0-SNAPSHOT</version>
 		<relativePath>../parent/pom.xml</relativePath>
 	</parent>
 
-	<groupId>com.github.marcosemiao.openjpa.ws.db2.rownumber</groupId>
-	<artifactId>openjpa-ws-db2-rownumber</artifactId>
+	<groupId>com.github.marcosemiao.openjpa.db2.rownumber</groupId>
+	<artifactId>openjpa-db2-rownumber</artifactId>
 	<version>1.0.0-SNAPSHOT</version>
 
-	<name>OpenJPA WebSphere DB2 Row Number Dictionary</name>
+	<name>OpenJPA DB2 Row Number Dictionary</name>
 
 	<dependencies>
 		<dependency>
@@ -25,7 +25,12 @@
 		<dependency>
 			<groupId>com.ibm.websphere.ws</groupId>
 			<artifactId>com.ibm.ws.jpa</artifactId>
-			<version>1.0.0</version>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>com.github.marcosemiao</groupId>
+			<artifactId>serviceloader-processor</artifactId>
 			<scope>provided</scope>
 		</dependency>
 	</dependencies>
