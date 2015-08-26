@@ -47,8 +47,11 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
 		<maven.compiler.source>1.6</maven.compiler.source>
 		<maven.compiler.target>1.6</maven.compiler.target>
+
+		<release.tagNameFormat>openjpa-db2-rownumber-@{project.version}</release.tagNameFormat>
 	</properties>
 
 	<prerequisites>
@@ -196,6 +199,7 @@
 					<configuration>
 						<autoVersionSubmodules>true</autoVersionSubmodules>
 						<useReleaseProfile>false</useReleaseProfile>
+						<tagNameFormat>${release.tagNameFormat}</tagNameFormat>
 					</configuration>
 				</plugin>
 
