@@ -1,21 +1,23 @@
-# openjpa-db2-rownumber
+# OpenJpa DB2 Row Number Dictionary
 
-doc a faire
-SELECT * 
-    FROM (SELECT rr.*, ROW_NUMBER() OVER(ORDER BY ORDER OF rr) AS rn FROM 
-        (SELECT t0.CGGEST, t0.CLOREG, t0.NUMERA, t0.DCRENR, t0.DDEVAL, 
-        t0.DFIVAL, t0.DMODEN, t2.CLOREG, t2.CCVTAB, t2.ILOREG, 
-        t2.LLOREG, t0.CMACRE, t0.CMAMOD, t1.LLOREG FROM 
-        DBM01.SIGR_0732_TERRITOIRE_CP t0 LEFT OUTER JOIN DBM01.UTI00732 
-        t1 ON t0.CLOREG = t1.CLOREG LEFT OUTER JOIN DBM01.UTI00732 t2 
-        ON t0.CLOREG = t2.CLOREG 
-    WHERE (t0.CGGEST = 1 AND t0.NUMERA = 302145) 
-    ORDER BY t1.LLOREG DESC) AS rr) AS r WHERE rn > 0 AND rn <= 2
+## Fonctionnalités générales
+Cette librairie est un plug-in pour Open JPA pour utiliser la fonction "**ROW_NUMBER**" de DB2 au lieu d'effectuer un "**FETCH FIRST**" pour la pagination.
 
+- Facile d'utilisation, il suffit de rajouter la dépendance Maven avec le scope "**runtime**" dans votre application.
+- Disponible sur le repository central de Maven.
+- Compatible à partir de la version Java 6.
+- Compatible à partir de la version 1.0.1 d'Open JPA.
 
-|-------|-------|-------|-------|-------|-------|-------|-------|-------|-------|-------|-------|-------|-------|-------|
-|CGGEST |CLOREG |NUMERA |DCRENR |DDEVAL |DFIVAL |DMODEN |CLOREG |CCVTAB |ILOREG |LLOREG |CMACRE |CMAMOD |LLOREG |RN     |
-|-------|-------|-------|-------|-------|-------|-------|-------|-------|-------|-------|-------|-------|-------|-------|
-|1      |54     |302145 |UNREAD |UNREAD |UNREAD |UNREAD |UNREAD |UNREAD |UNREAD |UNREAD |UNREAD |UNREAD |UNREAD |UNREAD |
-|1      |2      |302145 |UNREAD |UNREAD |UNREAD |UNREAD |UNREAD |UNREAD |UNREAD |UNREAD |UNREAD |UNREAD |UNREAD |UNREAD |
-|-------|-------|-------|-------|-------|-------|-------|-------|-------|-------|-------|-------|-------|-------|-------|
+## Utilisation rapide
+- Ajouter la dépendance dans votre projet :
+
+````xml
+<dependency>
+	<groupId>com.github.marcosemiao.openjpa.db2.rownumber</groupId>
+	<artifactId>openjpa-db2-rownumber</artifactId>
+	<scope>runtime</scope>
+	<version>1.0.0</version>
+</dependency>
+````
+
+Open JPA utilise le service loader de Java, ce plugin sera chargé automatiquement.
