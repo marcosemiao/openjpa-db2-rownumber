@@ -4,13 +4,13 @@
 	<parent>
 		<groupId>com.github.marcosemiao.openjpa.db2.rownumber</groupId>
 		<artifactId>parent</artifactId>
-		<version>1.0.0</version>
+		<version>1.0.1-SNAPSHOT</version>
 		<relativePath>../parent/pom.xml</relativePath>
 	</parent>
 
 	<groupId>com.github.marcosemiao.openjpa.db2.rownumber</groupId>
 	<artifactId>openjpa-db2-rownumber</artifactId>
-	<version>1.0.0</version>
+	<version>1.0.1-SNAPSHOT</version>
 
 	<name>OpenJPA DB2 Row Number Dictionary</name>
 
