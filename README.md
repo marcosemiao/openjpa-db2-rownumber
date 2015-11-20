@@ -7,6 +7,7 @@ Cette librairie est un plug-in pour Open JPA pour utiliser la fonction "**ROW_NU
 - Disponible sur le repository central de Maven.
 - Compatible à partir de la version Java 6.
 - Compatible à partir de la version 1.0.1 d'Open JPA.
+- Compatible avec l'implémentation d'Open JPA de IBM WebSphere.
 
 ## Utilisation rapide
 - Ajouter la dépendance dans votre projet :

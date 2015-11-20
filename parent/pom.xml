@@ -1,14 +1,15 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.github.marcosemiao.openjpa.db2.rownumber</groupId>
 	<artifactId>parent</artifactId>
-	<version>1.0.0-SNAPSHOT</version>
+	<version>1.0.1-SNAPSHOT</version>
 
 	<packaging>pom</packaging>
 
 	<name>OpenJPA DB2 Row Number Parent</name>
+
+	<description>A Row Number DB2 Dictionary for Open JPA</description>
 
 	<url>https://github.com/marcosemiao/openjpa-db2-rownumber</url>
 
@@ -47,8 +48,11 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
 		<maven.compiler.source>1.6</maven.compiler.source>
 		<maven.compiler.target>1.6</maven.compiler.target>
+
+		<release.tagNameFormat>openjpa-db2-rownumber-@{project.version}</release.tagNameFormat>
 	</properties>
 
 	<prerequisites>
@@ -196,6 +200,7 @@
 					<configuration>
 						<autoVersionSubmodules>true</autoVersionSubmodules>
 						<useReleaseProfile>false</useReleaseProfile>
+						<tagNameFormat>${release.tagNameFormat}</tagNameFormat>
 					</configuration>
 				</plugin>
 
