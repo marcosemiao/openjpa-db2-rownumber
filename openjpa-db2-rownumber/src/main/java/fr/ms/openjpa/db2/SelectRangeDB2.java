@@ -31,12 +31,12 @@ final class SelectRangeDB2 {
     static void appendSelectRange(final SQLBuffer buf, final long start, final long end, final boolean subselect) {
 
 	if (!subselect) {
+	    final boolean isStart = (start != 0);
+	    final boolean isEnd = (end != Long.MAX_VALUE);
+
 	    final StringBuilder builder = new StringBuilder("SELECT * FROM (SELECT rr.*, ROW_NUMBER() OVER(ORDER BY ORDER OF rr) AS rn FROM (");
 	    builder.append(buf.getSQL());
 	    builder.append(") AS rr) AS r WHERE ");
-
-	    final boolean isStart = (start != 0);
-	    final boolean isEnd = (end != Long.MAX_VALUE);
 
 	    if (isStart) {
 		builder.append("rn > ");
