@@ -16,11 +16,14 @@
  */
 package fr.ms.openjpa.db2;
 
+import org.apache.openjpa.jdbc.conf.JDBCConfiguration;
 import org.apache.openjpa.jdbc.conf.JDBCConfigurationImpl;
 import org.apache.openjpa.lib.conf.AbstractProductDerivation;
 import org.apache.openjpa.lib.conf.Configuration;
 import org.apache.openjpa.lib.conf.PluginValue;
 import org.apache.openjpa.lib.conf.ProductDerivation;
+import org.apache.openjpa.lib.log.Log;
+import org.apache.openjpa.lib.util.Localizer;
 
 import fr.ms.util.ServiceLoader;
 
@@ -35,6 +38,8 @@ import fr.ms.util.ServiceLoader;
 @ServiceLoader
 public class RowNumberDB2ProductDerivation extends AbstractProductDerivation {
 
+    private static final Localizer _loc = Localizer.forPackage(RowNumberDB2ProductDerivation.class);
+
     public int getType() {
 	return ProductDerivation.TYPE_FEATURE;
     }
@@ -43,14 +48,23 @@ public class RowNumberDB2ProductDerivation extends AbstractProductDerivation {
     public boolean beforeConfigurationLoad(final Configuration conf) {
 	if (conf instanceof JDBCConfigurationImpl) {
 	    final JDBCConfigurationImpl jdbcConfig = (JDBCConfigurationImpl) conf;
+
 	    final PluginValue dbdictionaryPlugin = jdbcConfig.dbdictionaryPlugin;
 
+	    final Log log = jdbcConfig.getLog(JDBCConfiguration.LOG_JDBC);
+
 	    if (classPresent("com.ibm.ws.persistence.jdbc.sql.DB2Dictionary")) {
+		if (log.isInfoEnabled()) {
+		    log.info(_loc.get("load-db2-ws-dictionary"));
+		}
 		dbdictionaryPlugin.setAlias("db2", RowNumberWSDB2Dictionary.class.getName());
 		return true;
 	    }
 
 	    if (classPresent("org.apache.openjpa.jdbc.sql.DB2Dictionary")) {
+		if (log.isInfoEnabled()) {
+		    log.info(_loc.get("load-db2-openjpa-dictionary"));
+		}
 		dbdictionaryPlugin.setAlias("db2", RowNumberDB2Dictionary.class.getName());
 		return true;
 	    }
