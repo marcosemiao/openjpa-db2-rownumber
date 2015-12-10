@@ -29,30 +29,37 @@ import org.apache.openjpa.jdbc.sql.SQLBuffer;
 final class SelectRangeDB2 {
 
     static void appendSelectRange(final SQLBuffer buf, final long start, final long end, final boolean subselect) {
-
 	if (!subselect) {
 	    final boolean isStart = (start != 0);
 	    final boolean isEnd = (end != Long.MAX_VALUE);
 
-	    final StringBuilder builder = new StringBuilder("SELECT * FROM (SELECT rr.*, ROW_NUMBER() OVER(ORDER BY ORDER OF rr) AS rn FROM (");
-	    builder.append(buf.getSQL());
-	    builder.append(") AS rr) AS r WHERE ");
+	    if (!(isStart | isEnd)) {
+		final StringBuilder query = new StringBuilder("SELECT * FROM (");
 
-	    if (isStart) {
-		builder.append("rn > ");
-		builder.append(start);
+		query.append("SELECT rr.*, ROW_NUMBER() OVER(ORDER BY ORDER OF rr) AS row_number_openjpa_db2 FROM (");
+		query.append(buf.getSQL());
+		query.append(") AS rr");
+
+		query.append(") ");
+
+		query.append("WHERE ");
+
+		if (isStart) {
+		    query.append("row_number_openjpa_db2 > ");
+		    query.append(start);
+		}
+
+		if (isStart && isEnd) {
+		    query.append(" AND ");
+		}
+
+		if (isEnd) {
+		    query.append("row_number_openjpa_db2 <= ");
+		    query.append(end);
+		}
+
+		buf.replaceSqlString(0, buf.getSQL().length(), query.toString());
 	    }
-
-	    if (isStart && isEnd) {
-		builder.append(" AND ");
-	    }
-
-	    if (isEnd) {
-		builder.append("rn <= ");
-		builder.append(end);
-	    }
-
-	    buf.replaceSqlString(0, buf.getSQL().length(), builder.toString());
 	}
     }
 }

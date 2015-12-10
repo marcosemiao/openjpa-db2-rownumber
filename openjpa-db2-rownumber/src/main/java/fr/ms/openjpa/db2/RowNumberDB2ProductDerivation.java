@@ -55,7 +55,7 @@ public class RowNumberDB2ProductDerivation extends AbstractProductDerivation {
 
 	    if (classPresent("com.ibm.ws.persistence.jdbc.sql.DB2Dictionary")) {
 		if (log.isInfoEnabled()) {
-		    log.info(_loc.get("load-db2-ws-dictionary"));
+		    log.info(_loc.get("db2-ws-dictionary"));
 		}
 		dbdictionaryPlugin.setAlias("db2", RowNumberWSDB2Dictionary.class.getName());
 		return true;
@@ -63,7 +63,7 @@ public class RowNumberDB2ProductDerivation extends AbstractProductDerivation {
 
 	    if (classPresent("org.apache.openjpa.jdbc.sql.DB2Dictionary")) {
 		if (log.isInfoEnabled()) {
-		    log.info(_loc.get("load-db2-openjpa-dictionary"));
+		    log.info(_loc.get("db2-openjpa-dictionary"));
 		}
 		dbdictionaryPlugin.setAlias("db2", RowNumberDB2Dictionary.class.getName());
 		return true;
