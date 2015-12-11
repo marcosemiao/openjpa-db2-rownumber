@@ -30,10 +30,11 @@ final class SelectRangeDB2 {
 
     static void appendSelectRange(final SQLBuffer buf, final long start, final long end, final boolean subselect) {
 	if (!subselect) {
-	    final boolean isStart = (start != 0);
-	    final boolean isEnd = (end != Long.MAX_VALUE);
+	    final boolean isUsingOffset = (start != 0);
+	    final boolean isUsingLimit = (end != Long.MAX_VALUE);
+	    final boolean pagination = isUsingOffset | isUsingLimit;
 
-	    if (!(isStart | isEnd)) {
+	    if (pagination) {
 		final StringBuilder query = new StringBuilder("SELECT * FROM (");
 
 		query.append("SELECT rr.*, ROW_NUMBER() OVER(ORDER BY ORDER OF rr) AS row_number_openjpa_db2 FROM (");
@@ -44,16 +45,16 @@ final class SelectRangeDB2 {
 
 		query.append("WHERE ");
 
-		if (isStart) {
+		if (isUsingOffset) {
 		    query.append("row_number_openjpa_db2 > ");
 		    query.append(start);
 		}
 
-		if (isStart && isEnd) {
+		if (isUsingOffset && isUsingLimit) {
 		    query.append(" AND ");
 		}
 
-		if (isEnd) {
+		if (isUsingLimit) {
 		    query.append("row_number_openjpa_db2 <= ");
 		    query.append(end);
 		}
