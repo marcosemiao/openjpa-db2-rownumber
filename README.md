@@ -26,7 +26,7 @@ Open JPA utilise le service loader de Java, ce plugin sera chargé automatiqueme
 ## Fonctionnement
 Lors de la pagination, ce plugin englobe la requete d'origine dans une autre pour effectuer la pagination.
 
-Prenons la requete suivante : SELECT * FROM TOTO
+Prenons la requete suivante : **SELECT * FROM TOTO**
 On désire retourner les elements compris entre la 50ème position et la 100ème position. Le plugin va executer cela : 
 
 ````sql
