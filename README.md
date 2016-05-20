@@ -31,9 +31,9 @@ On désire retourner les elements compris entre la 50ème position et la 100ème
 
 ````sql
 SELECT * FROM (
-SELECT rr.*, ROW_NUMBER() OVER(ORDER BY ORDER OF rr) AS row_number_openjpa_db2 FROM (
-SELECT * FROM TOTO
-) AS rr
+	SELECT rr.*, ROW_NUMBER() OVER(ORDER BY ORDER OF rr) AS row_number_openjpa_db2 FROM (
+		SELECT * FROM TOTO
+	) AS rr
 ) WHERE row_number_openjpa_db2 > 50 and row_number_openjpa_db2 <= 100
 ````
 
