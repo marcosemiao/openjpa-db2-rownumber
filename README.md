@@ -24,10 +24,9 @@ Cette librairie est un plug-in pour Open JPA pour utiliser la fonction "**ROW_NU
 Open JPA utilise le service loader de Java, ce plugin sera chargé automatiquement.
 
 ## Fonctionnement
-Lors de la pagination, ce plugin englobe la requete d'origine dans une autre pour effectuer la pagination.
+Lors de la pagination, ce plugin englobe la requête d'origine dans une autre pour effectuer la pagination.
 
-Prenons la requete suivante : **SELECT * FROM TOTO**
-On désire retourner les elements compris entre la 50ème position et la 100ème position. Le plugin va executer cela : 
+Prenons la requête suivante : **SELECT * FROM TOTO** On désire retourner les éléments compris entre la 50ème position et la 100ème position. Le plugin va exécuter cela :
 
 ````sql
 SELECT * FROM (
